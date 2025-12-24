@@ -301,7 +301,7 @@ GitHub: [@PunitTak2005](https://github.com/PunitTak2005)
 ## Contact
 
 For questions, suggestions, or collaboration:
-- Email: punit.2023cse@technonjr.org
+- Email: punittak2005@gmail.com
 - GitHub Issues: [Create an issue](https://github.com/PunitTak2005/pan-card-ocr-extraction/issues)
 
 ---
