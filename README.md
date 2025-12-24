@@ -52,35 +52,6 @@ PAN-CARD-OCR-EXTRACTION/
 | **PIL/Pillow** | Image handling | Latest |
 | **Python** | Programming language | 3.7+ |
 
-## Installation
-
-### Prerequisites
-- Python 3.7+
-- Tesseract OCR engine
-
-### Step 1: Install Tesseract
-
-**On Ubuntu/Debian:**
-```bash
-sudo apt-get install tesseract-ocr
-```
-
-**On macOS:**
-```bash
-brew install tesseract
-```
-
-**On Windows:**
-Download installer from: https://github.com/UB-Mannheim/tesseract/wiki
-
-### Step 2: Clone Repository & Install Python Dependencies
-
-```bash
-git clone https://github.com/PunitTak2005/pan-card-ocr-extraction.git
-cd pan-card-ocr-extraction
-pip install -r requirements.txt
-```
-
 ## Usage
 
 ###
