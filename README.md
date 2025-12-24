@@ -38,8 +38,7 @@ PAN-CARD-OCR-EXTRACTION/
 ├── README.md                  # This file
 ├── requirements.txt           # Python dependencies
 ├── LICENSE                    # MIT License
-└── docs/                      # Additional documentation (optional)
-    └── IMPROVEMENTS.md        # NLP/LLM improvement techniques
+
 ```
 
 ## Technology Stack
