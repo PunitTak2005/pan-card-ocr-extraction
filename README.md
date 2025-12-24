@@ -83,7 +83,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Option 1: Google Colab (Easiest)
+###
 
 1. Open the Colab notebook: `PAN_OCR.ipynb`
 2. Run cells in sequence (all dependencies installed automatically)
@@ -92,68 +92,6 @@ pip install -r requirements.txt
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TimqEeAGvNX8U_4cxA1hM_ykI3bJMd3E)
 
-### Option 2: Local Python Script
-
-Create `extract_pan.py`:
-
-```python
-import cv2
-import pytesseract
-import re
-import json
-from pathlib import Path
-
-# Configure tesseract path (Windows)
-pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-
-def preprocess_image(image_path):
-    image = cv2.imread(image_path)
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    gray = cv2.bilateralFilter(gray, 11, 17, 17)
-    th = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-    return th
-
-def extract_pan_fields(raw_text):
-    text_up = raw_text.upper()
-    
-    # Extract PAN number
-    pan_pattern = re.compile(r'\b[A-Z]{5}[0-9]{4}[A-Z]\b')
-    pan_candidates = pan_pattern.findall(text_up)
-    pan_number = pan_candidates[0] if pan_candidates else None
-    
-    # Extract names (simplified)
-    lines = [l.strip() for l in text_up.splitlines()]
-    name = None
-    father_name = None
-    
-    for i, line in enumerate(lines):
-        if "INCOME" in line and "TAX" in line:
-            if i + 1 < len(lines):
-                name = lines[i + 1]
-            if i + 2 < len(lines):
-                father_name = lines[i + 2]
-            break
-    
-    return {
-        "name": name,
-        "father_name": father_name,
-        "pan_number": pan_number,
-        "raw_text": raw_text
-    }
-
-# Usage
-image_path = "pan_card.jpg"
-th = preprocess_image(image_path)
-raw_text = pytesseract.image_to_string(th, config=r'--oem 3 --psm 6 -l eng')
-result = extract_pan_fields(raw_text)
-
-print(json.dumps(result, indent=2))
-```
-
-Run:
-```bash
-python extract_pan.py
-```
 
 ## How It Works
 
